@@ -4,6 +4,7 @@ import {useState} from 'react';
 import Axios from 'axios';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+require('dotenv').config();
 
 function App() {
 
@@ -22,7 +23,7 @@ const [newSalary, setNewSalary] = useState(0)
 const [employeeList, setEmployeeList] = useState([]); 
 
 const [currentPage, setCurrentPage] = useState(1);
-const [postsPerPage, setPostsPerPage] = useState(2);
+const [postsPerPage] = useState(2);
 
 const addEmployee = () => {
 Axios.post('http://localhost:3001/create', 
@@ -41,9 +42,13 @@ salary: salary
 })
 };
 
+//Node ENV
+console.log(process.env)
+const baseUrl = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3001';
+
 // Get a list of employees
 const getEmployees = () => {
-Axios.get('http://localhost:3001/employees').then( (response) => {
+Axios.get(baseUrl + '/employees').then( (response) => {
 setEmployeeList(response.data);
 })
 } 
@@ -54,35 +59,35 @@ window.location.reload();
 
 // Update employee info
 const updateEmployeeName = (id) => {
-Axios.put('http://localhost:3001/update_name', {name: newName, id: id}).then( (response) => {
+Axios.put(baseUrl + '/update_name', {name: newName, id: id}).then( (response) => {
 getEmployees()
 }
 )
 };
 
 const updateEmployeeAge = (id) => {
-Axios.put('http://localhost:3001/update_age', {age: newAge, id: id}).then( (response) => {
+Axios.put(baseUrl + '/update_age', {age: newAge, id: id}).then( (response) => {
 getEmployees()
 }
 )
 };
 
 const updateEmployeeCountry = (id) => {
-Axios.put('http://localhost:3001/update_country', {country: newCountry, id: id}).then( (response) => {
+Axios.put(baseUrl + '/update_country', {country: newCountry, id: id}).then( (response) => {
 getEmployees()
 }
 )
 };
 
 const updateEmployeePosition = (id) => {
-Axios.put('http://localhost:3001/update_position', {position: newPosition, id: id}).then( (response) => {
+Axios.put(baseUrl + '/update_position', {position: newPosition, id: id}).then( (response) => {
 getEmployees()
 }
 )
 };
 
 const updateEmployeeSalary = (id) => {
-Axios.put('http://localhost:3001/update_salary', {salary: newSalary, id: id}).then( (response) => {
+Axios.put(baseUrl + '/update_salary', {salary: newSalary, id: id}).then( (response) => {
 getEmployees()
 }
 )
@@ -97,7 +102,7 @@ message: 'Are you sure you want to delete this employee?',
 buttons: [
 {
 label: 'Yes',
-onClick: () => Axios.delete(`http://localhost:3001/delete/${id}`).then( (response) => {
+onClick: () => Axios.delete(baseUrl + `/delete/${id}`).then( (response) => {
 getEmployees()
 }
 ) 
