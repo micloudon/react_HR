@@ -25,8 +25,12 @@ const [employeeList, setEmployeeList] = useState([]);
 const [currentPage, setCurrentPage] = useState(1);
 const [postsPerPage] = useState(2);
 
+
+//Node ENV
+const baseUrl = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3001';
+
 const addEmployee = () => {
-Axios.post('http://localhost:3001/create', 
+Axios.post(baseUrl + 'create', 
 {name: name, 
 age: age, 
 country: country, 
@@ -41,9 +45,6 @@ salary: salary
 }] )
 })
 };
-
-//Node ENV
-const baseUrl = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3001';
 
 // Get a list of employees
 const getEmployees = () => {
