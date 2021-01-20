@@ -30,7 +30,7 @@ const [postsPerPage] = useState(2);
 const baseUrl = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3001';
 
 const addEmployee = () => {
-Axios.post(baseUrl + 'create', 
+Axios.post(baseUrl + '/create', 
 {name: name, 
 age: age, 
 country: country, 
