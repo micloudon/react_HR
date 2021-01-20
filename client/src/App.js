@@ -43,7 +43,6 @@ salary: salary
 };
 
 //Node ENV
-console.log(process.env)
 const baseUrl = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3001';
 
 // Get a list of employees
