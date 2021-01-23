@@ -8,7 +8,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 require('dotenv').config();
 
 function App() {
-
+    window.location.href="!#myanchor";
     const [name, setName] = useState('')
     const [age, setAge] = useState(0)
     const [country, setCountry] = useState('')
