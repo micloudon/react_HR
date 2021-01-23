@@ -15,7 +15,7 @@ const db = mysql.createConnection({
 
 })
 
-app.post('/create', (req, res) => {
+app.post('/api/create', (req, res) => {
     const name = req.body.name
     const age = req.body.age
     const country = req.body.country
@@ -31,7 +31,7 @@ app.post('/create', (req, res) => {
         );
 } )
 
-app.get('/employees', (req, res) =>{
+app.get('/api/employees', (req, res) =>{
     db.query('SELECT * FROM employee', (err, result) => {
         const page = req.query.page
         const limit = req.query.limit
@@ -42,7 +42,7 @@ app.get('/employees', (req, res) =>{
 })
 
 // Update employee info
-app.put('/update_name', (req, res) => {
+app.put('/api/update_name', (req, res) => {
     const id = req.body.id
     const name = req.body.name;
     db.query('UPDATE employee SET name = ? WHERE id = ?', [name, id], (err, result) => {
@@ -51,7 +51,7 @@ app.put('/update_name', (req, res) => {
     } )
 } )
 
-app.put('/update_age', (req, res) => {
+app.put('/api/update_age', (req, res) => {
     const id = req.body.id
     const age = req.body.age;
     db.query('UPDATE employee SET age = ? WHERE id = ?', [age, id], (err, result) => {
@@ -60,7 +60,7 @@ app.put('/update_age', (req, res) => {
     } )
 } )
 
-app.put('/update_country', (req, res) => {
+app.put('/api/update_country', (req, res) => {
     const id = req.body.id
     const country = req.body.country;
     db.query('UPDATE employee SET country = ? WHERE id = ?', [country, id], (err, result) => {
@@ -69,7 +69,7 @@ app.put('/update_country', (req, res) => {
     } )
 } )
 
-app.put('/update_position', (req, res) => {
+app.put('/api/update_position', (req, res) => {
     const id = req.body.id
     const position = req.body.position;
     db.query('UPDATE employee SET position = ? WHERE id = ?', [position, id], (err, result) => {
@@ -78,7 +78,7 @@ app.put('/update_position', (req, res) => {
     } )
 } )
 
-app.put('/update_salary', (req, res) => {
+app.put('/api/update_salary', (req, res) => {
     const id = req.body.id
     const salary = req.body.salary;
     db.query('UPDATE employee SET salary = ? WHERE id = ?', [salary, id], (err, result) => {
@@ -87,7 +87,7 @@ app.put('/update_salary', (req, res) => {
     } )
 } )
 
-app.delete('/delete/:id', (req, res) => {
+app.delete('/api/delete/:id', (req, res) => {
     const id = req.params.id
     db.query('DELETE FROM employee WHERE id = ?', id, (err, result) => {
         if (err) {console.log(err)}

@@ -2,25 +2,25 @@ import React from 'react'
 import './Pagination.css'
 
 export const Pagination = ({postsPerPage, totalPosts, paginate}) => {
-const pageNumbers = []
+    const pageNumbers = []
 
-for(let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
-pageNumbers.push(i);
-}
+    for(let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+        pageNumbers.push(i);
+    }
 
-return (
-<nav>
-<ul>
-{pageNumbers.map(number => (
-<li key={number}>
-<a onClick={ () => paginate(number) } href="http://localhost:3000/!#myanchor" >
-{number}
-</a>
-</li>
-) )}
-</ul>
-</nav>
-)
+    return (
+        <nav>
+            <ul>
+            {pageNumbers.map(number => (
+                <li key={number}>
+                <a onClick={ () => paginate(number) } href="!#myanchor" >
+                {number}
+                </a>
+                </li>
+            ) )}
+            </ul>
+        </nav>
+    )
 }
 
 export default Pagination;
