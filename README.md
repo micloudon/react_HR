@@ -7,6 +7,5 @@ And it uses Express as the backend framework.
 
 The project itself is hosted on an AWS EC2 instance, using NGINX on a linux OS.  
 It has a domain name and SSL security.  
-Link to live site:  
-https://reacthr.tk/
+Site is no longer live.
 
